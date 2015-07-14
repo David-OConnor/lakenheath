@@ -1,6 +1,41 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for link in links %}
-    <h2><a href="{{ link.url }}">{{ link.title }}</a></h2>
-    {% endfor %}
+
+
+<div class="page-header">
+    <h1>Lakenheath Links</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Ops resources</h2>
+        <ul>
+            {% for link in ops_resources %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h2>Personal</h2>
+        <ul>
+            {% for link in personal %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h2>Base services</h2>
+        <ul>
+            {% for link in base_services %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h2><del>Queep</del> Warrior Resources</h2>
+        <ul>
+            {% for link in queep %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
 {% endblock %}
