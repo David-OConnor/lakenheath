@@ -1,3 +1,5 @@
+//"use strict";
+
 function initialize() {
     var mapOptions = {
         zoom: zoom,
@@ -8,8 +10,15 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.SATELLITE
     };
 
-    var map = new google.maps.Map(document.getElementById('map-canvas'),
+    // Declare map globally so it can be used elsewhere.
+    map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
+
+    // Import maplabels.
+    var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = '/static/js/maplabel.js';
+        document.body.appendChild(script);
 }
 
 function loadScript() {
@@ -21,3 +30,7 @@ function loadScript() {
 }
 
 window.onload = loadScript;
+
+
+
+

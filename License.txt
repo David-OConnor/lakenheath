@@ -1,0 +1,1 @@
+Uses js-map-label: https://github.com/googlemaps/js-map-label

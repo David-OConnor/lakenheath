@@ -82,7 +82,7 @@ def base_map():
         #Label("SERE", 52.400139, 0.567896),
         #Label("Gold", ),
         Label("Post office", 52.397489, 0.541705),
-        Label("Golf Course/Food", 52.398476, 0.569096),
+        Label("Golf course/Food", 52.398476, 0.569096),
         Label("Gym", 52.392908, 0.540615),
         Label("MPF", 52.395588, 0.547411),
         Label("Flight medicine", 52.394161, 0.544522),
@@ -98,10 +98,12 @@ def base_map():
         Label("In-processing", 52.394469, 0.547057)
     ]
 
+    labels_jssafe = [[label.text, label.lat, label.lon] for label in labels]
+
     return render_template('map.html',
                            title="Lakenheath Map",
                            center=center,
                            # Set map type in map.js due to limitations.
                            # map_type='SATELLITE',
                            zoom=16,
-                           labels=labels)
+                           labels=labels_jssafe)

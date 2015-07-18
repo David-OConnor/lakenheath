@@ -21,6 +21,7 @@
          and map type to Google's format after.#}
         var centerRaw = {{ center }};
         var zoom = {{ zoom }};
+        var labels = {{ labels|safe }};
 {#        Set map type in map.js due to limitations.#}
 {#        var mapTypeIdRaw = {{ map_type }};#}
     </script>
