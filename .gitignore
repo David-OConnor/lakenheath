@@ -12,7 +12,3 @@ workspace.xml
 
 
 # Project-specific
-
-# Third-party JS libraries
-app/static/bootstrap*
-app/static/jquery*
