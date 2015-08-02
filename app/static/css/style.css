@@ -1,0 +1,17 @@
+body {
+    background: #F2F2F2;
+}
+
+.container {
+    background: white;
+    margin: auto;
+
+}
+
+h1 {
+    text-align: center;
+}
+
+li {
+    font-size: large;
+}
