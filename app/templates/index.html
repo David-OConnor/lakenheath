@@ -6,38 +6,70 @@
     <h1>Lakenheath Links</h1>
 </div>
 
+
 <div class="row">
-    <div class="col-md-12">
-        <h2>Ops resources</h2>
-        <ul>
-            {% for link in ops_resources %}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {% endfor %}
-        </ul>
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Ops Resources</h2>
+            </div>
 
-        <h2>Personal</h2>
-        <ul>
-            {% for link in personal %}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {% endfor %}
-        </ul>
+            <div class="panel-body">
 
-        <h2>Base services</h2>
-        <ul>
-            {% for link in base_services %}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {% endfor %}
-        </ul>
+                <ul>
+                    {% for link in ops_resources %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
 
-        <h2><del>Queep</del> Warrior Resources</h2>
-        <ul>
-            {% for link in queep %}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {% endfor %}
-        </ul>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Base Services</h2>
+            </div>
 
-        <br/>
-        <p>* Gov computer only</p>
+            <div class="panel-body">
+
+                <ul>
+                    {% for link in base_services %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Personal</h2>
+            </div>
+
+            <div class="panel-body">
+
+                <ul>
+                    {% for link in personal %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title"><del>Queep</del> Warrior Resources</h2>
+            </div>
+
+            <div class="panel-body">
+
+                <ul>
+                    {% for link in queep %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <h4>* Gov computer only</h4>
     </div>
 </div>
 

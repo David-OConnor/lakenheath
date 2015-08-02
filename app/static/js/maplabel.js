@@ -236,14 +236,5 @@ function showLabels() {
 
     }
 }
-//
-//var mapLabel = new MapLabel({
-//          text: 'Tes22t',
-//          position: new google.maps.LatLng(52.397283, 0.551360),
-//          map: map,
-//          fontSize: 25,
-//          align: 'right'
-//        });
-//        //mapLabel.set('position', new google.maps.LatLng(52.397283, 0.551360));
 
 showLabels();
