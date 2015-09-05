@@ -4,14 +4,24 @@ body {
 
 .container {
     background: white;
-    margin: auto;
-
 }
 
 h1 {
     text-align: center;
 }
 
+h3 {
+    margin-top: 50px;
+}
+
+h4 {
+    text-align: center;
+}
+
 li {
     font-size: large;
+}
+
+#last-updated {
+    text-align: center;
 }

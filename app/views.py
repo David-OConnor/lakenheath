@@ -27,6 +27,7 @@ def index():
         # Sub links on the main page to pubs checkers, ifg etc?
         Link("Lowfly notams and target imagery", 'http://flight-plan.herokuapp.com/'),
         # Link("Ops useful contacts", '/contacts'),
+        Link("Roster", '/roster'),
     ]
 
     personal = [
@@ -35,7 +36,8 @@ def index():
              'https://ice.usafe.af.mil/sites/48FW/WSA/48thFWAdvancedPrograms/'
              'test/CVN%20Foreign%20Travel.aspx?PageView=Shared'),
         Link("Leave", 'https://www.my.af.mil/leavewebprod/profile'),
-        Link("Pay", 'https://mypay.dfas.mil/mypay.aspx')
+        Link("Pay", 'https://mypay.dfas.mil/mypay.aspx'),
+        Link("Housing information", '/housing')
     ]
 
     base_services = [
@@ -50,7 +52,8 @@ def index():
         Link("PT Scores",
              'https://www.my.af.mil/afpc2affms/affms/ui/reportWrapper.jsp?Jsp='
              'callreport&AppName=launch&ReportTitle=Fitness%20Tracker&viewer=HTML'),
-        Link("Surf's up, Dude!", ''),
+        Link("Surf's up, Dude!**",
+             'https://w45.afpc.randolph.af.mil/AFPCSecureNet40/PKI/MainMenu1.aspx'),
         Link("Webmail", 'https://lakenheath.mail.us.af.mil/owa'),
         Link("DTS travel vouchers",
              'http://www.defensetravel.osd.mil/dts/site/index.jsp')
@@ -119,3 +122,15 @@ def base_map():
                            # map_type='SATELLITE',
                            zoom=16,
                            labels=labels_jssafe)
+
+
+@app.route('/housing')
+def housing():
+    return render_template('housing.html',
+                           title="Housing near Lakenheath")
+
+
+@app.route('/roster')
+def roster():
+    return render_template('roster.html',
+                           title="Squadron roster")
