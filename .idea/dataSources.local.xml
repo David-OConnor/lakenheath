@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - lakenheath@localhost" uuid="0877a8f1-7702-47ea-9f46-6fa0e75edd98">
+      <secret-storage>master_key</secret-storage>
+      <user-name>david</user-name>
+      <schema-pattern>lakenheath.pg_catalog lakenheath.public</schema-pattern>
+      <default-schemas>lakenheath.pg_catalog lakenheath.public</default-schemas>
+    </data-source>
+  </component>
+</project>

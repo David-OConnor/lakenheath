@@ -2,6 +2,7 @@ from collections import namedtuple
 
 from flask import render_template
 from app import app
+from app.models import Panther
 
 
 Link = namedtuple('Link', ['title', 'url'])
@@ -12,6 +13,7 @@ Label = namedtuple('Label', ['text', 'lat', 'lon'])
 @app.route('/index')
 def index():
     ops_resources = [
+        Link("Roster", '/roster'),
         Link("OGV ICE home page*",
              'https://ice.usafe.af.mil/sites/48FW/48thOperationsGroup/SitePages/Home.aspx'),
         Link("Pubs library*",
@@ -27,7 +29,6 @@ def index():
         # Sub links on the main page to pubs checkers, ifg etc?
         Link("Lowfly notams and target imagery", 'http://flight-plan.herokuapp.com/'),
         # Link("Ops useful contacts", '/contacts'),
-        Link("Roster", '/roster'),
     ]
 
     personal = [
@@ -132,5 +133,7 @@ def housing():
 
 @app.route('/roster')
 def roster():
+    panthers = Panther.query.order_by(Panther.last_name)
     return render_template('roster.html',
-                           title="Squadron roster")
+                           title="Squadron roster",
+                           panthers=panthers)

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h4><a href="/">Home</a></h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Callsign</th>
+            <th>Email</th>
+            <th>Phone (44+)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for panther in panthers %}
+        <tr>
+            <th>{{ " ".join([panther.first_name, panther.last_name])}}</th>
+            <th>{{ panther.callsign }}</th>
+            <th>{{ panther.email }}</th>
+            {# Indexing out the first two chars removes the UK country code. #}
+            <th>{{ panther.phone[2:] }}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endblock %}
