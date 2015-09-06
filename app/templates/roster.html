@@ -16,9 +16,9 @@
         <tr>
             <td>{{ " ".join([panther.first_name, panther.last_name])}}</td>
             <td>{{ panther.callsign }}</td>
-            <td>{{ panther.email }}</td>
+            <td><a href="mailto:{{ panther.email }}">{{ panther.email }}</a></td>
             {# Indexing out the first two chars removes the UK country code. #}
-            <td>{{ panther.phone[2:] }}</td>
+            <td><a href="tel:+{{ panther.phone }}">{{ panther.phone[2:] }}</a></td>
         </tr>
         {% endfor %}
     </tbody>
