@@ -25,6 +25,8 @@ class Link(db.Model):
     url = db.Column(db.String(255))
     # category  include 'ops_resources', 'personal', 'base_services' etc.
     category = db.Column(db.String(64))
+    # Order is for display order
+    order = db.Column(db.Integer)
 
     def __repr__(self):
         return self.name

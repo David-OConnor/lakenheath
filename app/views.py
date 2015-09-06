@@ -2,63 +2,21 @@ from collections import namedtuple
 
 from flask import render_template
 from app import app
-from app.models import Panther
+from app.models import Panther, Link
 
-
-Link = namedtuple('Link', ['title', 'url'])
 Label = namedtuple('Label', ['text', 'lat', 'lon'])
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    ops_resources = [
-        Link("Roster", '/roster'),
-        Link("OGV ICE home page*",
-             'https://ice.usafe.af.mil/sites/48FW/48thOperationsGroup/SitePages/Home.aspx'),
-        Link("Pubs library*",
-             'https://ice.usafe.af.mil/sites/48FW/48thOperationsGroup/48OGStan'
-             'Eval/FCIF%20(Pubs)%20Library/SitePages/Home.aspx'),
-        Link("Pubs checker*",
-             'https://ice.usafe.af.mil/sites/48FW/48thOperationsGroup/'
-             '48OGStanEval/Sample%20Pubs%20Checkers/F15E%20Pubs%20Checkers/'
-             'Forms/AllItems.aspx'),
-        Link("Master Question Files*",
-             'https://ice.usafe.af.mil/sites/48FW/48thOperationsGroup/'
-             '48OGStanEval/MQF/F15E/Forms/AllItems.aspx'),
-        # Sub links on the main page to pubs checkers, ifg etc?
-        Link("Lowfly notams and target imagery", 'http://flight-plan.herokuapp.com/'),
-        # Link("Ops useful contacts", '/contacts'),
-    ]
+    ops_resources = Link.query.filter_by(category='ops_resources').order_by(Link.order)
 
-    personal = [
-        #Link("Pass policy", '/pass'),
-        Link("Form 6s (Foreign travel)*",
-             'https://ice.usafe.af.mil/sites/48FW/WSA/48thFWAdvancedPrograms/'
-             'test/CVN%20Foreign%20Travel.aspx?PageView=Shared'),
-        Link("Leave", 'https://www.my.af.mil/leavewebprod/profile'),
-        Link("Pay", 'https://mypay.dfas.mil/mypay.aspx'),
-        Link("Housing information", '/housing')
-    ]
+    personal = Link.query.filter_by(category='personal').order_by(Link.order)
 
-    base_services = [
-        # Link("Base map", '/map'),
-        Link("Useful contacts",
-             'http://www.lakenheath.af.mil/news/usefulcontacts.asp'),
-        Link("Base dining menus and hours", 'http://www.lakenheathfss.com/dining/')
-    ]
+    base_services = Link.query.filter_by(category='base_services').order_by(Link.order)
 
-    queep = [
-        Link("CBTs", 'https://golearn.adls.af.mil/'),
-        Link("PT Scores",
-             'https://www.my.af.mil/afpc2affms/affms/ui/reportWrapper.jsp?Jsp='
-             'callreport&AppName=launch&ReportTitle=Fitness%20Tracker&viewer=HTML'),
-        Link("Surf's up, Dude!**",
-             'https://w45.afpc.randolph.af.mil/AFPCSecureNet40/PKI/MainMenu1.aspx'),
-        Link("Webmail", 'https://lakenheath.mail.us.af.mil/owa'),
-        Link("DTS travel vouchers",
-             'http://www.defensetravel.osd.mil/dts/site/index.jsp')
-    ]
+    queep = Link.query.filter_by(category='queep').order_by(Link.order)
 
     return render_template('index.html',
                            title='Lakenheath Ops Info',

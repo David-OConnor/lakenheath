@@ -14,11 +14,11 @@
     <tbody>
         {% for panther in panthers %}
         <tr>
-            <th>{{ " ".join([panther.first_name, panther.last_name])}}</th>
-            <th>{{ panther.callsign }}</th>
-            <th>{{ panther.email }}</th>
+            <td>{{ " ".join([panther.first_name, panther.last_name])}}</td>
+            <td>{{ panther.callsign }}</td>
+            <td>{{ panther.email }}</td>
             {# Indexing out the first two chars removes the UK country code. #}
-            <th>{{ panther.phone[2:] }}</th>
+            <td>{{ panther.phone[2:] }}</td>
         </tr>
         {% endfor %}
     </tbody>
