@@ -2,18 +2,18 @@
 
 {% block content %}
 
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
 
-    <script type="text/javascript">
-        myModule = angular.module('sortApp', [])
+<script type="text/javascript">
+    myModule = angular.module('sortApp', [])
 
-        .controller('mainController', function($scope) {
-            $scope.sortType     = 'callsign'; // set the default sort type
-            $scope.sortReverse  = false;  // set the default sort order
-            $scope.searchPanthers   = '';     // set the default search/filter term
+            .controller('mainController', function($scope) {
+                $scope.sortType     = 'callsign'; // set the default sort type
+                $scope.sortReverse  = false;  // set the default sort order
+                $scope.searchPanthers   = '';     // set the default search/filter term
 
-            $scope.panthersJs = {{ panthers_js|safe }};
-        });
+                $scope.panthersJs = {{ panthers_js|safe }};
+            });
 
 
     {# Interpolation prevents conflicts with Jinja template tags; Angular
@@ -22,27 +22,29 @@
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
 
-    </script>
+</script>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
+
+        <div ng-app="sortApp" ng-controller="mainController">
+
+            <h4><a href="/">Home</a></h4>
+
+            <form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                        <input type="text" class="form-control" placeholder="Search" ng-model="searchPanthers">
+
+                    </div>
+                </div>
+            </form>
 
 
-    <div ng-app="sortApp" ng-controller="mainController">
-
-        <h4><a href="/">Home</a></h4>
-
-         <form>
-             <div class="form-group">
-                 <div class="input-group">
-                     <div class="input-group-addon"><i class="fa fa-search"></i></div>
-
-                     <input type="text" class="form-control" placeholder="Search" ng-model="searchPanthers">
-
-                 </div>
-             </div>
-          </form>
-
-
-        <table class="table table-striped">
-            <thead>
+            <table class="table table-striped">
+                <thead>
                 <tr>
                     <th>
                         <a href="#" ng-click="sortType = 'last_name'; sortReverse = !sortReverse">
@@ -64,9 +66,9 @@
                     <th>Phone (44+)</th>
 
                 </tr>
-            </thead>
+                </thead>
 
-            <tbody>
+                <tbody>
                 <tr ng-repeat="panther in panthersJs | orderBy:sortType:sortReverse | filter:searchPanthers">
                     <td>{[{ panther.full_name }]}</td>
                     <td>{[{ panther.callsign }]}</td>
@@ -74,9 +76,11 @@
                     <td><a href="tel:+44{[{ panther.phone }]}">{[{ panther.phone_formatted }]}</a></td>
                 </tr>
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
+        </div>
     </div>
+</div>
 
 {% endblock %}

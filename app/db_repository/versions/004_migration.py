@@ -5,12 +5,15 @@ from migrate import *
 from migrate.changeset import schema
 pre_meta = MetaData()
 post_meta = MetaData()
-user = Table('user', post_meta,
+link = Table('link', post_meta,
     Column('id', Integer, primary_key=True, nullable=False),
-    Column('email', String(length=120)),
-    Column('password', String(length=255)),
-    Column('active', Boolean),
-    Column('confirmed_at', DateTime),
+    Column('title', String(length=255)),
+    Column('url', String(length=255)),
+    Column('category', String(length=64)),
+    Column('order', Integer),
+    Column('cac_required', Boolean),
+    Column('login_required', Boolean),
+    Column('gov_only', Boolean),
 )
 
 
@@ -19,11 +22,15 @@ def upgrade(migrate_engine):
     # migrate_engine to your metadata
     pre_meta.bind = migrate_engine
     post_meta.bind = migrate_engine
-    post_meta.tables['user'].columns['active'].create()
+    post_meta.tables['link'].columns['cac_required'].create()
+    post_meta.tables['link'].columns['gov_only'].create()
+    post_meta.tables['link'].columns['login_required'].create()
 
 
 def downgrade(migrate_engine):
     # Operations to reverse the above upgrade go here.
     pre_meta.bind = migrate_engine
     post_meta.bind = migrate_engine
-    post_meta.tables['user'].columns['active'].drop()
+    post_meta.tables['link'].columns['cac_required'].drop()
+    post_meta.tables['link'].columns['gov_only'].drop()
+    post_meta.tables['link'].columns['login_required'].drop()
