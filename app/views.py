@@ -60,6 +60,8 @@ def housing():
 @app.route('/roster')
 @login_required
 def roster():
+    if not current_user.confirmed_at:
+        return render_template('not_confirmed.html')
     panthers = Panther.query.order_by(Panther.callsign)
 
     # Pass the template a dictionary representing the database entries in the
@@ -68,18 +70,18 @@ def roster():
     panthers_js = []
     for panther in panthers:
         panthers_js.append({'first_name': panther.first_name,
-                                 'last_name': panther.last_name,
-                                 'callsign': panther.callsign,
-                                 'email': panther.email,
-                                 'phone': panther.phone,
-                                 'full_name': panther.full_name(),
-                                 'phone_formatted': panther.phone_formatted()
-                                 })
+                            'last_name': panther.last_name,
+                            'callsign': panther.callsign,
+                            'email': panther.email,
+                            'phone': panther.phone,
+                            'full_name': panther.full_name(),
+                            'phone_formatted': panther.phone_formatted()
+                            })
 
     return render_template('roster.html',
                            title="Squadron roster",
-                           panthers=panthers,
-                           panthers_js_safe=panthers_js
+                           # panthers=panthers,
+                           panthers_js=panthers_js
                            )
 
 

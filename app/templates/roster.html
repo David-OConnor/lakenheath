@@ -16,8 +16,8 @@
         });
 
 
-    {#    Interpolation prevents conflicts with Jinja template tags; Angular
-    will now use '{[{' instead of '{{'.#}
+    {# Interpolation prevents conflicts with Jinja template tags; Angular
+    will now use '{[{' instead of '{{'. #}
     myModule.config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
@@ -25,7 +25,9 @@
     </script>
 
 
-    <div class="container" ng-app="sortApp" ng-controller="mainController">
+    <div ng-app="sortApp" ng-controller="mainController">
+
+        <h4><a href="/">Home</a></h4>
 
          <form>
              <div class="form-group">
@@ -37,6 +39,7 @@
                  </div>
              </div>
           </form>
+
 
         <table class="table table-striped">
             <thead>
@@ -64,12 +67,6 @@
             </thead>
 
             <tbody>
-{#                <tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse | filter:searchFish">#}
-{#                    <td>{[{ roll.name }]}</td>#}
-{#                    <td>{[{ role.fish }]}</td>#}
-{#                    <td>{[{ role.tastiness }]}</td>#}
-{#                </tr>#}
-
                 <tr ng-repeat="panther in panthersJs | orderBy:sortType:sortReverse | filter:searchPanthers">
                     <td>{[{ panther.full_name }]}</td>
                     <td>{[{ panther.callsign }]}</td>
@@ -81,31 +78,5 @@
         </table>
 
     </div>
-
-
-
-    <h4><a href="/">Home</a></h4>
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Callsign</th>
-                <th>Email</th>
-                <th>Phone (44+)</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for panther in panthers %}
-            <tr>
-                <td>{{ " ".join([panther.first_name, panther.last_name])}}</td>
-                <td>{{ panther.callsign }}</td>
-                <td><a href="mailto:{{ panther.email }}">{{ panther.email }}</a></td>
-                <td><a href="tel:+44{{ panther.phone }}">{{ panther.phone_formatted() }}</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 
 {% endblock %}
