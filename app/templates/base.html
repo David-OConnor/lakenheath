@@ -26,13 +26,16 @@
 
     <div class="page-header">
         <h1>Lakenheath Links</h1>
+        {% if current_user.is_authenticated() %}
+            <a class="btn btn-primary" href="{{ url_for('security.logout') }}">logout</a>
+            <p>Logged in as {{ current_user.email }}</p>
+        {% endif %}
     </div>
 
     {% block content %}{% endblock %}
     <br>
     {#        <h5 id="last-updated">Last updated: August 2, 2015</h5>#}
     <h5 id="last-updated"><a href="/admin">Admin</a></h5>
-    <a class="btn btn-primary" href="{{ url_for('security.logout') }}">logout</a>
 
 </div>
 

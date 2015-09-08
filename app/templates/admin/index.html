@@ -1,27 +1,33 @@
 {% extends 'admin/master.html' %}
 {% block body %}
-{{ super() }}
-<div class="container">
-    <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <h1>Admin</h1>
-            <p class="lead">
-                Edit links, the roster, and accounts.
-            </p>
+    {{ super() }}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                {#            <h1>Admin</h1>#}
+                {#            <p class="lead">Edit links, the roster, and accounts.</p>#}
 
-            {% if not current_user.is_authenticated() %}
-            <p>Log in with your admin account here, or email Data to create
-               one, or request changes:
-            <p>
-            <p><b>david.alan.oconnor@gmail.com</b></p>
-                <a class="btn btn-primary" href="{{ url_for('security.login') }}">login</a>
-                <a class="btn btn-default" href="{{ url_for('security.register') }}">register</a>
-            </p>
-            {% endif %}
-            <p>
-                <a class="btn btn-primary" href="/"><i class="glyphicon glyphicon-chevron-left"></i> Back</a>
-            </p>
+                {% if not current_user.is_authenticated() %}
+                    <p class="lead">Log in to view the roster and base map.</p>
+
+                    <p>If you'd like to modify links, the roster etc, ask someone with
+                        an admin account. If you need an admin account created, email
+                        Data: david.alan.oconnor@gmail.com</p>
+                    <br>
+                    <a class="btn btn-primary" href="{{ url_for('security.login') }}">login</a>
+                    <a class="btn btn-default" href="{{ url_for('security.register') }}">register</a>
+                    </p>
+
+                {% elif 'superuser' in current_user.roles %}
+                    <p class="lead">You're logged in an as an administrator. Use the buttons
+                        above to modify accounts, users, base map locations, and the roster.</p>
+                {% else %}
+                    <p class="lead">You're logged in; you can view the roster and base map.</p>
+                {% endif %}
+                <p>
+                    <a class="btn btn-primary" href="/"><i class="glyphicon glyphicon-chevron-left"></i> Home</a>
+                </p>
+            </div>
         </div>
     </div>
-</div>
 {% endblock body %}

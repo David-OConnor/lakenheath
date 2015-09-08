@@ -19,7 +19,7 @@ def index():
                            ops_resources=ops_resources,
                            personal=personal,
                            base_services=base_services,
-                           queep=queep)
+                           queep=queep,)
 
 
 @app.route('/contacts')

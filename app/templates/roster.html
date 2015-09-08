@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<!-- Using HTTPS version prevents mixed content errors when loading from https
+version of Lakenlink. -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
 
 <script type="text/javascript">
@@ -42,43 +44,43 @@
                 </div>
             </form>
 
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>
+                            <a href="#" ng-click="sortType = 'last_name'; sortReverse = !sortReverse">
+                                Name
+                                <span ng-show="sortType == 'last_name' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'last_name' && sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </th>
 
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>
-                        <a href="#" ng-click="sortType = 'last_name'; sortReverse = !sortReverse">
-                            Name
-                            <span ng-show="sortType == 'last_name' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'last_name' && sortReverse" class="fa fa-caret-up"></span>
-                        </a>
-                    </th>
+                        <th>
+                            <a href="#" ng-click="sortType = 'callsign'; sortReverse = !sortReverse">
+                                Callsign
+                                <span ng-show="sortType == 'callsign' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'callsign' && sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </th>
 
-                    <th>
-                        <a href="#" ng-click="sortType = 'callsign'; sortReverse = !sortReverse">
-                            Callsign
-                            <span ng-show="sortType == 'callsign' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'callsign' && sortReverse" class="fa fa-caret-up"></span>
-                        </a>
-                    </th>
+                        <th>Email</th>
+                        <th>Phone (44+)</th>
 
-                    <th>Email</th>
-                    <th>Phone (44+)</th>
+                    </tr>
+                    </thead>
 
-                </tr>
-                </thead>
+                    <tbody>
+                    <tr ng-repeat="panther in panthersJs | orderBy:sortType:sortReverse | filter:searchPanthers">
+                        <td>{[{ panther.full_name }]}</td>
+                        <td>{[{ panther.callsign }]}</td>
+                        <td><a href="mailto:{[{ panther.email }]}">{[{ panther.email }]}</a></td>
+                        <td><a href="tel:+44{[{ panther.phone }]}">{[{ panther.phone_formatted }]}</a></td>
+                    </tr>
 
-                <tbody>
-                <tr ng-repeat="panther in panthersJs | orderBy:sortType:sortReverse | filter:searchPanthers">
-                    <td>{[{ panther.full_name }]}</td>
-                    <td>{[{ panther.callsign }]}</td>
-                    <td><a href="mailto:{[{ panther.email }]}">{[{ panther.email }]}</a></td>
-                    <td><a href="tel:+44{[{ panther.phone }]}">{[{ panther.phone_formatted }]}</a></td>
-                </tr>
-
-                </tbody>
-            </table>
-
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
