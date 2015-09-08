@@ -69,3 +69,6 @@ class Link(db.Model):
     category = db.Column(db.String(64))
     # Order is for display order
     order = db.Column(db.Integer)
+    cac_required = db.Column(db.Boolean())
+    login_required = db.Column(db.Boolean())
+    gov_only = db.Column(db.Boolean())

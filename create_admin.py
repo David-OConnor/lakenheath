@@ -14,7 +14,7 @@ with app.app_context():
     user_role = Role(name='user')
 
     first_admin = user_datastore.create_user(
-        email='admin2',
+        email='admin',
         password=encrypt_password('admin'),
         roles=[user_role, super_user_role]
     )

@@ -5,19 +5,19 @@ from app.models import Link
 
 ops_resources = [
     Link(title="Roster", url='/roster', category='ops_resources', order=1),
-    Link(title="OGV ICE home page*",
+    Link(title="OGV ICE home page",
          url='https://ice.usafe.af.mil/sites/48FW/48thOperationsGroup/SitePages/Home.aspx',
          category='ops_resources', order=2),
-    Link(title="Pubs library*",
+    Link(title="Pubs library",
          url='https://ice.usafe.af.mil/sites/48FW/48thOperationsGroup/48OGStan'
          'Eval/FCIF%20(Pubs)%20Library/SitePages/Home.aspx',
          category='ops_resources', order=3),
-    Link(title="Pubs checker*",
+    Link(title="Pubs checker",
          url='https://ice.usafe.af.mil/sites/48FW/48thOperationsGroup/'
          '48OGStanEval/Sample%20Pubs%20Checkers/F15E%20Pubs%20Checkers/'
          'Forms/AllItems.aspx',
          category='ops_resources', order=4),
-    Link(title="Master Question Files*",
+    Link(title="Master Question Files",
          url='https://ice.usafe.af.mil/sites/48FW/48thOperationsGroup/'
          '48OGStanEval/MQF/F15E/Forms/AllItems.aspx', category='ops_resources',
          order=5),
@@ -30,7 +30,7 @@ ops_resources = [
 
 personal = [
     #Link(title="Pass policy", '/pass'),
-    Link(title="Form 6s (Foreign travel)*",
+    Link(title="Form 6s (Foreign travel)",
          url='https://ice.usafe.af.mil/sites/48FW/WSA/48thFWAdvancedPrograms/'
          'test/CVN%20Foreign%20Travel.aspx?PageView=Shared',
          category='personal', order=1),
@@ -57,7 +57,7 @@ queep = [
          url='https://www.my.af.mil/afpc2affms/affms/ui/reportWrapper.jsp?Jsp='
          'callreport&AppName=launch&ReportTitle=Fitness%20Tracker&viewer=HTML',
          category='queep', order=2),
-    Link(title="Surf's up, Dude!**",
+    Link(title="Surf's up, Dude!*",
          url='https://w45.afpc.randolph.af.mil/AFPCSecureNet40/PKI/MainMenu1.aspx',
          category='queep', order=3),
     Link(title="Webmail", url='https://lakenheath.mail.us.af.mil/owa',
