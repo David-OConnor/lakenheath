@@ -1,10 +1,11 @@
 # From http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
 
 from migrate.versioning import api
-from app.settings import SQLALCHEMY_DATABASE_URI
-from app.settings import SQLALCHEMY_MIGRATE_REPO
+from app.config import SQLALCHEMY_DATABASE_URI
+from app.config import SQLALCHEMY_MIGRATE_REPO
 from app import db
 import os.path
+
 db.create_all()
 if not os.path.exists(SQLALCHEMY_MIGRATE_REPO):
     api.create(SQLALCHEMY_MIGRATE_REPO, 'database repository')
