@@ -6,8 +6,8 @@ from app import app
 from app.models import Panther, Link, Location
 
 
-from functools import wraps
-from flask import request, current_app
+# from functools import wraps
+# from flask import request, current_app
 
 # def ssl_required(fn):
 #     @wraps(fn)
@@ -67,7 +67,7 @@ def phone_numbers():
 
 @app.route('/map')
 @login_required
-@ssl_required
+# @ssl_required
 def base_map():
     center = [52.397283, 0.551360]
     locations = Location.query.all()
@@ -91,7 +91,7 @@ def housing():
 
 @app.route('/roster')
 @login_required
-@ssl_required
+# @ssl_required
 def roster():
     if not current_user.confirmed_at:
         return render_template('not_confirmed.html')
