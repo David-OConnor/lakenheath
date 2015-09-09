@@ -28,10 +28,13 @@ def ssl_required(fn):
     @wraps(fn)
     def decorated_view(*args, **kwargs):
         # if request.is_secure:
-        if 'https:' in request.url:
+        if request.url.startswith('https://'):
             return fn(*args, **kwargs)
         else:
-            return redirect(request.url.replace("http://", "https://"))
+            if request.url.startswith('http://'):
+                url = request.url.replace('http://', 'https://', 1)
+                code = 302
+                return redirect(url, code=code)
 
     return decorated_view
 
