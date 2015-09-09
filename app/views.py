@@ -67,6 +67,7 @@ def phone_numbers():
 
 @app.route('/map')
 @login_required
+@ssl_required
 def base_map():
     center = [52.397283, 0.551360]
     locations = Location.query.all()
