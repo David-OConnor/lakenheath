@@ -27,7 +27,8 @@ from flask import request, current_app
 def ssl_required(fn):
     @wraps(fn)
     def decorated_view(*args, **kwargs):
-        if request.is_secure:
+        # if request.is_secure:
+        if 'https:' in request.url:
             return fn(*args, **kwargs)
         else:
             return redirect(request.url.replace("http://", "https://"))
