@@ -22,17 +22,17 @@ from flask import request, current_app
 #
 #     return decorated_view
 
-
-
-def ssl_required(fn):
-    @wraps(fn)
-    def decorated_view(*args, **kwargs):
-        if request.url.startswith('http://'):
-            url = request.url.replace('http://', 'https://', 1)
-            code = 302
-            return redirect(url, code=code)
-
-    return decorated_view
+#
+#
+# def ssl_required(fn):
+#     @wraps(fn)
+#     def decorated_view(*args, **kwargs):
+#         if request.url.startswith('http://'):
+#             url = request.url.replace('http://', 'https://', 1)
+#             code = 302
+#             return redirect(url, code=code)
+#
+#     return decorated_view
 
 
 
