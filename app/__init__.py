@@ -14,8 +14,8 @@ app.config.from_object('app.config')
 
 # Force SSL redirect on the roster. Note that we have to use the
 # lakenheath.herokuapp website, to avoid paying for an SSL cert etc.
-# sslify = SSLify(app, skips=['/', '/index', '/map', '/admin', '/login', '/register',
-#                             '/logout'])
+sslify = SSLify(app, skips=['/', '/index', '/map', '/admin', '/login', '/register',
+                            '/logout'])
 
 db = SQLAlchemy(app)
 admin = Admin(app, name='Lakenlink', base_template='my_master.html',
@@ -25,11 +25,6 @@ heroku = Heroku(app)
 
 from app import views, models
 
-# Add views to the admin page that let us modify database entries.
-# admin.add_view(ModelView(models.User, db.session))
-# admin.add_view(ModelView(models.Role, db.session))
-# admin.add_view(ModelView(models.Link, db.session))
-# admin.add_view(ModelView(models.Panther, db.session))
 
 admin.add_view(views.AdminModelView(models.Role, db.session))
 admin.add_view(views.AdminModelView(models.User, db.session))
