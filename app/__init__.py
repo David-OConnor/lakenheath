@@ -16,8 +16,8 @@ app.config.from_object('app.config')
 # lakenheath.herokuapp website, to avoid paying for an SSL cert etc.
 # sslify = SSLify(app, skips=['/', '/index', '/map', '/admin', '/login', '/register',
 #                             '/logout'])
-sslify = SSLify(app, skips=['', 'index', 'map', 'admin', 'login', 'register',
-                            'logout'])
+# sslify = SSLify(app, skips=['', 'index', 'admin', 'login', 'register',
+#                             'logout'])
 
 db = SQLAlchemy(app)
 admin = Admin(app, name='Lakenlink', base_template='my_master.html',

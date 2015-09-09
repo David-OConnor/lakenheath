@@ -6,6 +6,37 @@ from app import app
 from app.models import Panther, Link, Location
 
 
+from functools import wraps
+from flask import request, current_app
+
+# def ssl_required(fn):
+#     @wraps(fn)
+#     def decorated_view(*args, **kwargs):
+#         if current_app.config.get("SSL"):
+#             if request.is_secure:
+#                 return fn(*args, **kwargs)
+#             else:
+#                 return redirect(request.url.replace("http://", "https://"))
+#
+#         return fn(*args, **kwargs)
+#
+#     return decorated_view
+
+
+
+def ssl_required(fn):
+    @wraps(fn)
+    def decorated_view(*args, **kwargs):
+        if request.is_secure:
+            return fn(*args, **kwargs)
+        else:
+            return redirect(request.url.replace("http://", "https://"))
+
+    return decorated_view
+
+
+
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -59,6 +90,7 @@ def housing():
 
 @app.route('/roster')
 @login_required
+@ssl_required
 def roster():
     if not current_user.confirmed_at:
         return render_template('not_confirmed.html')
@@ -83,6 +115,7 @@ def roster():
                            # panthers=panthers,
                            panthers_js=panthers_js
                            )
+
 
 
 # Create customized model view class
