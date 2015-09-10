@@ -17,7 +17,7 @@ app.config.from_object('app.config')
 # sslify = SSLify(app, skips=['/', '/index', '/map', '/admin', '/login', '/register',
 #                             '/logout'])
 # sslify = SSLify(app, skips=['index'])
-sslify = SSLify(app, includes=['roster, map'])
+sslify = SSLify(app, includes=['roster', 'map'])
 
 db = SQLAlchemy(app)
 admin = Admin(app, name='Lakenlink', base_template='my_master.html',
