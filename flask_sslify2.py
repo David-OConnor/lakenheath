@@ -60,7 +60,10 @@ class SSLify(object):
         if self.inclucde_list and isinstance(self.inclucde_list, list):
             for include in self.inclucde_list:
                 if request.path.startswith('/{0}'.format(include)):
+                    print("!include:", request.path)
                     return True
+                else:
+                    print("NOT INCLUDE", request.path)
         return False
 
     def redirect_to_ssl(self):
