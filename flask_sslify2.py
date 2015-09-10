@@ -22,7 +22,7 @@ class SSLify(object):
         self.hsts_include_subdomains = subdomains or self.app.config['SSLIFY_SUBDOMAINS']
         self.permanent = permanent or self.app.config['SSLIFY_PERMANENT']
         self.skip_list = skips or self.app.config['SSLIFY_SKIPS']
-        self.inclucde_list = includes or self.app.config['SSLIFY_INCLUDES']
+        self.include_list = includes or self.app.config['SSLIFY_INCLUDES']
 
         if app is not None:
             self.init_app(app)
@@ -57,13 +57,10 @@ class SSLify(object):
     def include(self):
         """Checks the include list."""
         # Should we include?
-        if self.inclucde_list and isinstance(self.inclucde_list, list):
-            for include in self.inclucde_list:
+        if self.include_list and isinstance(self.include_list, list):
+            for include in self.include_list:
                 if request.path.startswith('/{0}'.format(include)):
-                    print("!include:", request.path)
                     return True
-                else:
-                    print("NOT INCLUDE", request.path)
         return False
 
     def redirect_to_ssl(self):
@@ -75,7 +72,10 @@ class SSLify(object):
             request.headers.get('X-Forwarded-Proto', 'http') == 'https'
         ]
 
-        if not any(criteria) and self.include and not self.skip:
+        if not any(criteria) and not self.skip:
+            if self.include_list and isinstance(self.include_list, list):
+                if not self.include:
+                    return
             if request.url.startswith('http://'):
                 url = request.url.replace('http://', 'https://', 1)
                 code = 302
