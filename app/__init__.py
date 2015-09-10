@@ -15,7 +15,9 @@ app.config.from_object('app.config')
 
 # Force SSL redirect on the roster and map. Note that we have to use the
 # lakenheath.herokuapp website, to avoid paying for an SSL cert etc.
-sslify = SSLify(app, includes=['roster', 'map'])
+# Simply skipping SSL on the home page would work, but SSLify isn't set up
+# to skip the main page , url '', without blocking everything after it.
+sslify = SSLify(app, includes=['roster', 'map', 'admin'])
 
 db = SQLAlchemy(app)
 admin = Admin(app, name='Lakenlink', base_template='my_master.html',
