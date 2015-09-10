@@ -39,6 +39,9 @@ class Panther(db.Model):
     email = db.Column(db.String(120), unique=True)
     # Phone number without country code.
     phone = db.Column(db.String(64), unique=True)
+    # 'A flight', 'B flight' etc, or 'Intel', 'AFE'. Needs to be searchable,
+    # so 'A' won't do.
+    flight = db.Column(db.String(64))
 
     def full_name(self):
         return ' '.join([self.first_name, self.last_name])

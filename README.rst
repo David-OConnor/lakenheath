@@ -1,5 +1,6 @@
-Lakenlink: Useful links for operations
-======================================
+Lakenlink: Link page, roster, and Google Maps interface
+=======================================================
 
-Provides links to commonly-used resources, as well as an original roster and map.
+Website designed for internal use. Uses Flask, with a database to manage links,
+user accounts, a map with labels, and a searchable, filterable roster.
 

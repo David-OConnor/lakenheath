@@ -7,16 +7,14 @@ from flask_admin import helpers as admin_helpers
 from flask.ext.heroku import Heroku
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.security import Security, SQLAlchemyUserDatastore
+# Import the custom flask_sslify that supports an includes list.
 from flask_sslify2 import SSLify
 
 app = Flask(__name__)
 app.config.from_object('app.config')
 
-# Force SSL redirect on the roster. Note that we have to use the
+# Force SSL redirect on the roster and map. Note that we have to use the
 # lakenheath.herokuapp website, to avoid paying for an SSL cert etc.
-# sslify = SSLify(app, skips=['/', '/index', '/map', '/admin', '/login', '/register',
-#                             '/logout'])
-# sslify = SSLify(app, skips=['index'])
 sslify = SSLify(app, includes=['roster', 'map'])
 
 db = SQLAlchemy(app)

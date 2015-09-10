@@ -107,16 +107,23 @@ def roster():
                             'callsign': panther.callsign,
                             'email': panther.email,
                             'phone': panther.phone,
+                            'flight': panther.flight,
                             'full_name': panther.full_name(),
                             'phone_formatted': panther.phone_formatted()
                             })
+
+    # todo Temporary workaround after adding the flight field. Remove once
+    # todo everyone has a flight.
+    for panther in panthers_js:
+        if not panther['flight']:
+            panther['flight'] = ''
+
 
     return render_template('roster.html',
                            title="Squadron roster",
                            # panthers=panthers,
                            panthers_js=panthers_js
                            )
-
 
 
 # Create customized model view class
