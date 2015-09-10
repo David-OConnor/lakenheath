@@ -7,7 +7,7 @@ from flask_admin import helpers as admin_helpers
 from flask.ext.heroku import Heroku
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.security import Security, SQLAlchemyUserDatastore
-from flask_sslify import SSLify
+from flask_sslify2 import SSLify
 
 app = Flask(__name__)
 app.config.from_object('app.config')
@@ -16,7 +16,8 @@ app.config.from_object('app.config')
 # lakenheath.herokuapp website, to avoid paying for an SSL cert etc.
 # sslify = SSLify(app, skips=['/', '/index', '/map', '/admin', '/login', '/register',
 #                             '/logout'])
-sslify = SSLify(app, skips=['index'])
+# sslify = SSLify(app, skips=['index'])
+sslify = SSLify(app, includes=['roster, map'])
 
 db = SQLAlchemy(app)
 admin = Admin(app, name='Lakenlink', base_template='my_master.html',
