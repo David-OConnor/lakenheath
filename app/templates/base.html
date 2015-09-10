@@ -34,8 +34,10 @@
 
     {% block content %}{% endblock %}
     <br>
-    {#        <h5 id="last-updated">Last updated: August 2, 2015</h5>#}
-    <h5 id="last-updated"><a href="/admin">Admin</a></h5>
+
+{# Use lakenheath.herokuapp.com/admin instead of /admin for SSL workaround. #}
+{#    <h5 id="last-updated"><a href="/admin">Admin</a></h5>#}
+    <h5 id="last-updated"><a href="https://lakenheath.herokuapp.com/admin">Admin</a></h5>
 
 </div>
 
