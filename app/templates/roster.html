@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block home %}
+    <h4><a href="/">Home</a></h4>
+{% endblock %}
+
+
 {% block content %}
 
 <!-- Using HTTPS version prevents mixed content errors when loading from https
@@ -8,22 +13,19 @@ version of Lakenlink. -->
 
 <script type="text/javascript">
     myModule = angular.module('sortApp', [])
+        .controller('mainController', function($scope) {
+            $scope.sortType     = 'callsign'; // set the default sort type
+            $scope.sortReverse  = false;  // set the default sort order
+            $scope.searchPanthers   = '';     // set the default search/filter term
 
-            .controller('mainController', function($scope) {
-                $scope.sortType     = 'callsign'; // set the default sort type
-                $scope.sortReverse  = false;  // set the default sort order
-                $scope.searchPanthers   = '';     // set the default search/filter term
-
-                $scope.panthersJs = {{ panthers_js|safe }};
-            });
-
+            $scope.panthersJs = {{ panthers_js|safe }};
+        });
 
     {# Interpolation prevents conflicts with Jinja template tags; Angular
     will now use '{[{' instead of '{{'. #}
     myModule.config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
-
 </script>
 
 <div class="row">
@@ -31,17 +33,15 @@ version of Lakenlink. -->
 
         <div ng-app="sortApp" ng-controller="mainController">
 
-            <h4><a href="/">Home</a></h4>
-
-            <h5>Example searches: 'Bull', 'Mogan', 'A flight', 'ADO', 'leadership', 'intel'</h5>
-
             {# Search form #}
             <form>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-search"></i></div>
 
-                        <input type="text" class="form-control" placeholder="Search" ng-model="searchPanthers">
+                        <input type="text" class="form-control" placeholder=
+                            "Example searches: 'Bull', 'Mogan', 'A flight', 'ADO', 'leadership', 'intel'"
+                            ng-model="searchPanthers">
 
                     </div>
                 </div>
