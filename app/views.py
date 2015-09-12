@@ -6,37 +6,6 @@ from app import app
 from app.models import Panther, Link, Location
 
 
-# from functools import wraps
-# from flask import request, current_app
-
-# def ssl_required(fn):
-#     @wraps(fn)
-#     def decorated_view(*args, **kwargs):
-#         if current_app.config.get("SSL"):
-#             if request.is_secure:
-#                 return fn(*args, **kwargs)
-#             else:
-#                 return redirect(request.url.replace("http://", "https://"))
-#
-#         return fn(*args, **kwargs)
-#
-#     return decorated_view
-
-#
-#
-# def ssl_required(fn):
-#     @wraps(fn)
-#     def decorated_view(*args, **kwargs):
-#         if request.url.startswith('http://'):
-#             url = request.url.replace('http://', 'https://', 1)
-#             code = 302
-#             return redirect(url, code=code)
-#
-#     return decorated_view
-
-
-
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -67,12 +36,15 @@ def phone_numbers():
 
 @app.route('/map')
 @login_required
-# @ssl_required
 def base_map():
     center = [52.397283, 0.551360]
     locations = Location.query.all()
 
-    labels_jssafe = [[loc.label, loc.lat, loc.lon] for loc in locations]
+    # Pass the template a dictionary representing the database entries in the
+    # map, like in the roster. view
+    locations_js = [{'label': loc.label,
+                     'lat': loc.lat,
+                     'lon': loc.lon} for loc in locations]
 
     return render_template('map.html',
                            title="Lakenheath Map",
@@ -80,7 +52,7 @@ def base_map():
                            # Set map type in map.js due to limitations.
                            # map_type='SATELLITE',
                            zoom=16,
-                           labels=labels_jssafe)
+                           locations_js=locations_js)
 
 
 @app.route('/housing')
@@ -91,7 +63,6 @@ def housing():
 
 @app.route('/roster')
 @login_required
-# @ssl_required
 def roster():
     if not current_user.confirmed_at:
         return render_template('not_confirmed.html')
@@ -100,24 +71,15 @@ def roster():
     # Pass the template a dictionary representing the database entries in the
     # roster instead of a Python model object... The dict will be converted
     # to a JS object by the template engine.
-    panthers_js = []
-    for panther in panthers:
-        panthers_js.append({'first_name': panther.first_name,
-                            'last_name': panther.last_name,
-                            'callsign': panther.callsign,
-                            'email': panther.email,
-                            'phone': panther.phone,
-                            'flight': panther.flight,
-                            'full_name': panther.full_name(),
-                            'phone_formatted': panther.phone_formatted()
-                            })
-
-    # todo Temporary workaround after adding the flight field. Remove once
-    # todo everyone has a flight.
-    for panther in panthers_js:
-        if not panther['flight']:
-            panther['flight'] = ''
-
+    panthers_js = [{'first_name': panther.first_name,
+                    'last_name': panther.last_name,
+                    'callsign': panther.callsign,
+                    'email': panther.email,
+                    'phone': panther.phone,
+                    'flight': panther.flight,
+                    'full_name': panther.full_name(),
+                    'phone_formatted': panther.phone_formatted()
+                    } for panther in panthers]
 
     return render_template('roster.html',
                            title="Squadron roster",
@@ -139,7 +101,8 @@ class AdminModelView(sqla.ModelView):
 
     def _handle_view(self, name, **kwargs):
         """
-        Override builtin _handle_view in order to redirect users when a view is not accessible.
+        Override builtin _handle_view in order to redirect users when a view is
+        not accessible.
         """
         if not self.is_accessible():
             if current_user.is_authenticated():

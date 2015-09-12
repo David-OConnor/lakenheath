@@ -50,7 +50,7 @@ class Panther(db.Model):
         return ' '.join([self.phone[:5], self.phone[5:8], self.phone[8:]])
 
     def __repr__(self):
-        return self.last_name
+        return self.full_name()
 
 
 class Location(db.Model):

@@ -207,9 +207,9 @@ MapLabel.prototype['onRemove'] = MapLabel.prototype.onRemove;
 
 // todo figure out where to put this; ie not in maplabel.js.
 function showLabels() {
-    for (var i = 0; i < labels.length; i++) {
-        var text = labels[i][0];
-        var position = new google.maps.LatLng(labels[i][1], labels[i][2]);
+    for (var i = 0; i < locations.length; i++) {
+        var text = locations[i].label;
+        var position = new google.maps.LatLng(locations[i].lat, locations[i].lon);
 
         // Marker icon
         new google.maps.Marker({
