@@ -38,7 +38,6 @@ def index():
 @app.route('/pass')
 @login_required
 def pass_guidance():
-    # return send_from_directory('static', 'pass_guidance.pdf', as_attachment=True)
     return send_file('static/pass_guidance.pdf', as_attachment=False)
 
 
@@ -88,6 +87,16 @@ def roster():
                     'full_name': panther.full_name(),
                     'phone_formatted': panther.phone_formatted()
                     } for panther in panthers]
+
+    # This prevents None values from raising javascript errors, preventing the
+    # roster from displaying.
+    for panther in panthers_js:
+        for key in panther:
+            if panther[key] is None:
+                panther[key] = ''
+
+    print(panthers_js)
+
 
     return render_template('roster.html',
                            title="Squadron roster",

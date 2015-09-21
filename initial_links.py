@@ -46,17 +46,18 @@ base_services = [
 ]
 
 personal = [
-    # Link(title="Pass policy", '/pass'),
+    Link(title="Pass policy", url='/pass', category='personal', order=1,
+         cac_required=False, login_required=True, gov_only=False),
     Link(title="Form 6s (Foreign travel)",
          url='https://ice.usafe.af.mil/sites/48FW/WSA/48thFWAdvancedPrograms/'
          'test/CVN%20Foreign%20Travel.aspx?PageView=Shared',
-         category='personal', order=1, cac_required=True, login_required=False,
+         category='personal', order=2, cac_required=True, login_required=False,
          gov_only=True),
     Link(title="Leave", url='https://www.my.af.mil/leavewebprod/profile',
-         category='personal', order=2, cac_required=True, login_required=False,
+         category='personal', order=3, cac_required=True, login_required=False,
          gov_only=False),
     Link(title="Pay", url='https://mypay.dfas.mil/mypay.aspx',
-         category='personal', order=3, cac_required=True, login_required=False,
+         category='personal', order=4, cac_required=True, login_required=False,
          gov_only=False),
     # Link(title="Housing information", '/housing', category='personal',
     #      order=4, cac_required=False, login_required=False, gov_only=False)

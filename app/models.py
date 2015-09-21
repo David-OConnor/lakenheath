@@ -33,8 +33,8 @@ class User(db.Model, UserMixin):
 
 class Panther(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(64))
-    last_name = db.Column(db.String(64))
+    first_name = db.Column(db.String(64), nullable=False)
+    last_name = db.Column(db.String(64), nullable=False)
     callsign = db.Column(db.String(64))
     email = db.Column(db.String(120), unique=True)
     # Phone number without country code.
@@ -47,7 +47,11 @@ class Panther(db.Model):
         return ' '.join([self.first_name, self.last_name])
 
     def phone_formatted(self):
-        return ' '.join([self.phone[:5], self.phone[5:8], self.phone[8:]])
+        try:
+            return ' '.join([self.phone[:5], self.phone[5:8], self.phone[8:]])
+        # ie there's no phone number, or an improperly-formatted one.
+        except TypeError:
+            return
 
     def __repr__(self):
         return self.full_name()
@@ -55,10 +59,10 @@ class Panther(db.Model):
 
 class Location(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    label = db.Column(db.String(120))
+    label = db.Column(db.String(120), nullable=False)
     # lat and lon are in degrees.
-    lat = db.Column(db.Float)
-    lon = db.Column(db.Float)
+    lat = db.Column(db.Float, nullable=False)
+    lon = db.Column(db.Float, nullable=False)
 
     def __repr__(self):
         return self.label
@@ -66,8 +70,8 @@ class Location(db.Model):
 
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255))
-    url = db.Column(db.String(255))
+    title = db.Column(db.String(255), nullable=False)
+    url = db.Column(db.String(255), nullable=False)
     # category  include 'ops_resources', 'personal', 'base_services' etc.
     category = db.Column(db.String(64))
     # Order is for display order
