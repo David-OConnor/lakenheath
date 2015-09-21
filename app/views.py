@@ -95,9 +95,6 @@ def roster():
             if panther[key] is None:
                 panther[key] = ''
 
-    print(panthers_js)
-
-
     return render_template('roster.html',
                            title="Squadron roster",
                            # panthers=panthers,
