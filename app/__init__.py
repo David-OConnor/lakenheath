@@ -28,7 +28,6 @@ heroku = Heroku(app)
 from app import views, models
 
 
-admin.add_view(views.AdminModelView(models.Role, db.session))
 admin.add_view(views.AdminModelView(models.User, db.session))
 admin.add_view(views.AdminModelView(models.Link, db.session))
 admin.add_view(views.AdminModelView(models.Panther, db.session))

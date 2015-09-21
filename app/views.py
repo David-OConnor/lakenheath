@@ -1,4 +1,5 @@
-from flask import render_template, redirect, abort, url_for, request
+from flask import render_template, redirect, abort, url_for, request, \
+    make_response, send_from_directory, send_file
 from flask_admin.contrib import sqla
 from flask_security import current_user, login_required
 
@@ -22,17 +23,23 @@ def index():
                            queep=queep,)
 
 
-@app.route('/contacts')
-def phone_numbers():
+# @app.route('/contacts')
+# def phone_numbers():
+#
+#     contacts = [
+#         # V
+#         #
+#
+#     ]
+#
+#     return render_template('contacts.html', contacts=contacts)
 
-    contacts = [
-        # V
-        #
 
-    ]
-
-    return render_template('contacts.html', contacts=contacts)
-
+@app.route('/pass')
+@login_required
+def pass_guidance():
+    # return send_from_directory('static', 'pass_guidance.pdf', as_attachment=True)
+    return send_file('static/pass_guidance.pdf', as_attachment=False)
 
 @app.route('/map')
 @login_required
