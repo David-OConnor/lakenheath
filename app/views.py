@@ -41,6 +41,7 @@ def pass_guidance():
     # return send_from_directory('static', 'pass_guidance.pdf', as_attachment=True)
     return send_file('static/pass_guidance.pdf', as_attachment=False)
 
+
 @app.route('/map')
 @login_required
 def base_map():

@@ -17,7 +17,7 @@ app.config.from_object('app.config')
 # lakenheath.herokuapp website, to avoid paying for an SSL cert etc.
 # Simply skipping SSL on the home page would work, but SSLify isn't set up
 # to skip the main page , url '', without blocking everything after it.
-sslify = SSLify(app, includes=['roster', 'map', 'admin'])
+sslify = SSLify(app, includes=['roster', 'map', 'admin', 'pass'])
 
 db = SQLAlchemy(app)
 admin = Admin(app, name='Lakenlink', base_template='my_master.html',
