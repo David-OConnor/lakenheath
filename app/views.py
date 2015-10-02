@@ -86,7 +86,7 @@ def roster():
                     'flight': panther.flight,
                     'full_name': panther.full_name(),
                     'phone_formatted': panther.phone_formatted()
-                    } for panther in panthers]
+                    } for panther in panthers if panther.active]
 
     # This prevents None values from raising javascript errors, preventing the
     # roster from displaying.

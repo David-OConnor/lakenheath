@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
     # username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password = db.Column(db.String(255))
-    active = db.Column(db.Boolean())
+    active = db.Column(db.Boolean(), default=True)
     confirmed_at = db.Column(db.DateTime())
     roles = db.relationship('Role', secondary=roles_users,
                             backref=db.backref('users', lazy='dynamic'))
@@ -42,6 +42,7 @@ class Panther(db.Model):
     # 'A flight', 'B flight' etc, or 'Intel', 'AFE'. Needs to be searchable,
     # so 'A' won't do.
     flight = db.Column(db.String(64))
+    active = db.Column(db.Boolean(), default=True)
 
     def full_name(self):
         return ' '.join([self.first_name, self.last_name])
@@ -76,6 +77,6 @@ class Link(db.Model):
     category = db.Column(db.String(64))
     # Order is for display order
     order = db.Column(db.Integer)
-    cac_required = db.Column(db.Boolean())
-    login_required = db.Column(db.Boolean())
-    gov_only = db.Column(db.Boolean())
+    cac_required = db.Column(db.Boolean(), default=False)
+    login_required = db.Column(db.Boolean(), default=False)
+    gov_only = db.Column(db.Boolean(), default=False)
