@@ -1,7 +1,7 @@
-migrate
 Flask>=0.10.1
 Flask-Admin>=1.3.0
 flask-heroku>=0.1.9
+Flask-Login==0.2.11
 Flask-SQLAlchemy>=2.0
 flask-sslify>=0.1.5
 Flask-Security>=1.7.4
@@ -10,4 +10,4 @@ psycopg2>=2.6
 SQLAlchemy>=1.0.5
 sqlalchemy-migrate>=0.10.0
 gunicorn>=19.1.0
-
+migrate

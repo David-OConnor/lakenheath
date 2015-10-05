@@ -32,11 +32,11 @@
         <h1>Lakenheath Links</h1>
         {#        Optional block for a link to the home screen.#}
         {% block home %}{% endblock %}
-        {% if current_user.is_authenticated() %}
+{#        {% if current_user.is_authenticated %}#}
 {#            <a class="btn btn-primary" href="{{ url_for('security.logout') }}">logout</a>#}
-            <h5>Logged in as {{ current_user.email }}. <a href="
-            {{ url_for('security.logout') }}">Logout</a></h5>
-        {% endif %}
+{#            <h5>Logged in as {{ current_user.email }}. <a href="#}
+{#            {{ url_for('security.logout') }}">Logout</a></h5>#}
+{#        {% endif %}#}
     </div>
 
     {% block content %}{% endblock %}
