@@ -1,4 +1,6 @@
-//"use strict";
+"use strict";
+
+var map;
 
 function initialize() {
     var mapOptions = {

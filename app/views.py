@@ -41,6 +41,12 @@ def pass_guidance():
     return send_file('static/pass_guidance.pdf', as_attachment=False)
 
 
+@app.route('/pass-form')
+@login_required
+def pass_form():
+    return send_file('static/form_988_pass.xfdl', as_attachment=False)
+
+
 @app.route('/map')
 @login_required
 def base_map():
