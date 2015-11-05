@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+{#Switched from fontAwesome to svg icons, since fonts can't be downloaded on work computers.#}
 <div class="row">
     <div class="col-md-8 col-md-offset-2 col-xs-12">
         <div class="panel panel-default">
@@ -12,17 +13,20 @@
 
                 <ul>
                     {% for link in ops_resources %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a>
+                        <li><a href="{{ link.url }}">{{ link.title }}</a>&nbsp
                             {% if link.cac_required %}
-                                <i class="fa fa-credit-card"></i>
+                                <img class="svgicon" src="/static/svg/cac.svg">
+{#                                <i class="fa fa-credit-card"></i>#}
                             {% endif %}
 
                             {% if link.login_required %}
-                                <i class="fa fa-key"></i>
+                                 <img class="svgicon" src="/static/svg/login.svg">
+{#                                <i class="fa fa-key"></i>#}
                             {% endif %}
 
                             {% if link.gov_only %}
-                                <i class="fa fa-fighter-jet"></i>
+                                 <img class="svgicon" src="/static/svg/work.svg">
+{#                                <i class="fa fa-fighter-jet"></i>#}
                             {% endif %}
                         </li>
                     {% endfor %}
@@ -39,17 +43,20 @@
 
                 <ul>
                     {% for link in base_services %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a>
+                        <li><a href="{{ link.url }}">{{ link.title }}</a>&nbsp
                             {% if link.cac_required %}
-                                <i class="fa fa-credit-card"></i>
+                                <img class="svgicon" src="/static/svg/cac.svg">
+{#                                <i class="fa fa-credit-card"></i>#}
                             {% endif %}
 
                             {% if link.login_required %}
-                                <i class="fa fa-key"></i>
+                                <img class="svgicon" src="/static/svg/login.svg">
+{#                                <i class="fa fa-key"></i>#}
                             {% endif %}
 
                             {% if link.gov_only %}
-                                <i class="fa fa-fighter-jet"></i>
+                                <img class="svgicon" src="/static/svg/work.svg">
+{#                                <i class="fa fa-fighter-jet"></i>#}
                             {% endif %}
                         </li>
                     {% endfor %}
@@ -66,17 +73,20 @@
 
                 <ul>
                     {% for link in personal %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a>
+                        <li><a href="{{ link.url }}">{{ link.title }}</a>&nbsp
                             {% if link.cac_required %}
-                                <i class="fa fa-credit-card"></i>
+                                <img class="svgicon" src="/static/svg/cac.svg">
+{#                                <i class="fa fa-credit-card"></i>#}
                             {% endif %}
 
                             {% if link.login_required %}
-                                <i class="fa fa-key"></i>
+                                <img class="svgicon" src="/static/svg/login.svg">
+{#                                <i class="fa fa-key"></i>#}
                             {% endif %}
 
                             {% if link.gov_only %}
-                                <i class="fa fa-fighter-jet"></i>
+                                <img class="svgicon" src="/static/svg/work.svg">
+{#                                <i class="fa fa-fighter-jet"></i>#}
                             {% endif %}
                         </li>
                     {% endfor %}
@@ -93,17 +103,20 @@
 
                 <ul>
                     {% for link in queep %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a>
+                        <li><a href="{{ link.url }}">{{ link.title }}</a>&nbsp
                             {% if link.cac_required %}
-                                <i class="fa fa-credit-card"></i>
+                                <img class="svgicon" src="/static/svg/cac.svg">
+{#                                <i class="fa fa-credit-card"></i>#}
                             {% endif %}
 
                             {% if link.login_required %}
-                                <i class="fa fa-key"></i>
+                                <img class="svgicon" src="/static/svg/login.svg">
+{#                                <i class="fa fa-key"></i>#}
                             {% endif %}
 
                             {% if link.gov_only %}
-                                <i class="fa fa-fighter-jet"></i>
+                                <img class="svgicon" src="/static/svg/work.svg">
+{#                                <i class="fa fa-fighter-jet"></i>#}
                             {% endif %}
                         </li>
                     {% endfor %}
@@ -111,9 +124,15 @@
             </div>
         </div>
 
-        <h5><i class="fa fa-credit-card"></i> CAC required</h5>
-        <h5><i class="fa fa-key"></i> Login required</h5>
-        <h5><i class="fa fa-fighter-jet"></i> Work computer only</h5>
+
+{#        <h5><i class="fa fa-credit-card"></i> CAC required</h5>#}
+{#        <h5><i class="fa fa-key"></i> Login required</h5>#}
+{#        <h5><i class="fa fa-fighter-jet"></i> Work computer only</h5>#}
+
+        <h5><img class="svgicon" src="/static/svg/cac.svg"> CAC required</h5>
+        <h5><img class="svgicon" src="/static/svg/login.svg"> Login required</h5>
+        <h5><img class="svgicon" src="/static/svg/work.svg"> Work computer only</h5>
+
         <h5>* To access SURF, click the link → 'OK' → 'AMS' →
             'Personal Information' → 'My Career Brief'</h5>
     </div>
